@@ -7,15 +7,19 @@ class ArticlesController < ApplicationController
 
     @article = Article.new(article_params)
     if @article.save
+      flash[:notice] = 'Article was successfully saved'
       redirect_to article_path(@article)
     else
-      @article.errors.full_message
       render articles_new_path
     end
 
   end
 
   def index
+  end
+
+  def show
+    @article = Article.find(params[:id])
   end
 
   private
